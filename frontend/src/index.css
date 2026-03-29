@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { box-sizing: border-box; }
+  html { font-family: 'Space Grotesk', sans-serif; background-color: #0a0a0f; color: #e0e0f0; }
+  body { margin: 0; min-height: 100vh; background-color: #0a0a0f; overflow-x: hidden; }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: #0a0a0f; }
+  ::-webkit-scrollbar-thumb { background: #1e1e30; border-radius: 2px; }
+  ::-webkit-scrollbar-thumb:hover { background: #00ff88; }
+  ::selection { background: rgba(0,255,136,0.2); color: #00ff88; }
+}
+
+@layer components {
+  .scanlines::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,255,136,0.012) 2px, rgba(0,255,136,0.012) 4px);
+    pointer-events: none;
+    z-index: 9999;
+  }
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(0,255,136,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,255,136,0.025) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+  .vault-input {
+    @apply w-full bg-vault-bg border border-vault-border rounded-lg px-4 py-3
+           font-mono text-sm text-emerald-100 placeholder-gray-600
+           focus:outline-none focus:border-neon-green/50 focus:ring-1 focus:ring-neon-green/20
+           transition-all duration-200;
+  }
+  .vault-input:focus {
+    box-shadow: 0 0 0 1px rgba(0,255,136,0.2), 0 0 20px rgba(0,255,136,0.06);
+  }
+  .vault-textarea {
+    @apply vault-input resize-none;
+    min-height: 160px;
+  }
+  .btn-primary {
+    @apply relative inline-flex items-center justify-center gap-2
+           bg-neon-green text-vault-bg font-mono font-bold text-sm
+           px-6 py-3 rounded-lg transition-all duration-200 active:scale-95
+           disabled:opacity-40 disabled:cursor-not-allowed disabled:active:scale-100;
+    box-shadow: 0 0 24px rgba(0,255,136,0.2);
+  }
+  .btn-primary:hover:not(:disabled) {
+    box-shadow: 0 0 36px rgba(0,255,136,0.4);
+    transform: translateY(-1px);
+  }
+  .btn-secondary {
+    @apply relative inline-flex items-center justify-center gap-2
+           bg-transparent border border-vault-border text-gray-300 font-mono text-sm
+           px-6 py-3 rounded-lg transition-all duration-200 active:scale-95
+           hover:border-neon-cyan/40 hover:text-neon-cyan;
+  }
+  .btn-danger {
+    @apply relative inline-flex items-center justify-center gap-2
+           bg-transparent border border-neon-red/30 text-neon-red font-mono text-sm
+           px-6 py-3 rounded-lg transition-all duration-200 active:scale-95;
+    box-shadow: 0 0 16px rgba(255,51,102,0.08);
+  }
+  .btn-danger:hover { box-shadow: 0 0 28px rgba(255,51,102,0.2); }
+  .badge-success {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-mono font-medium
+           bg-neon-green/10 text-neon-green border border-neon-green/20;
+  }
+  .badge-danger {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-mono font-medium
+           bg-neon-red/10 text-neon-red border border-neon-red/20;
+  }
+  .badge-info {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-mono font-medium
+           bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/20;
+  }
+  .badge-warning {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-mono font-medium
+           bg-neon-amber/10 text-neon-amber border border-neon-amber/20;
+  }
+}
