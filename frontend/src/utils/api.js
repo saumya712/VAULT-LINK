@@ -1,4 +1,4 @@
-const BASE = '/api'
+const BASE = import.meta.env.VITE_API_URL
 
 export class NotFoundError extends Error {
   constructor(msg) { super(msg); this.name = 'NotFoundError' }
