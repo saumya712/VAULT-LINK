@@ -57,13 +57,13 @@ func main() {
 
 	// CORS — allow requests from the frontend origin
 	r.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{ "http://localhost:5173","https://vault-link-4.onrender.com",},
-		AllowMethods:     []string{"GET", "POST", "OPTIONS"},
-		AllowHeaders:     []string{"Origin", "Content-Type"},
-		ExposeHeaders:    []string{"Content-Length"},
-		AllowCredentials: false,
-		MaxAge:           12 * time.Hour, // how long browser caches preflight response
-	}))
+    AllowOrigins:     []string{"*"},
+    AllowMethods:     []string{"GET", "POST", "OPTIONS"},
+    AllowHeaders:     []string{"Origin", "Content-Type"},
+    ExposeHeaders:    []string{"Content-Length"},
+    AllowCredentials: false,
+    MaxAge:           12 * time.Hour,
+}))
 
 	// ── Step 7: Routes ───────────────────────────────────────────────────
 	api := r.Group("/api")
