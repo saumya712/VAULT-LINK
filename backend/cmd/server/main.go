@@ -28,7 +28,7 @@ func main() {
 	cfg := config.Load()
 
 	// ── Step 2: Connect to database ──────────────────────────────────────
-	db := repo.Newpostgres(cfg.Databaseurl)
+	db := repo.NewPostgres(cfg.Databaseurl)
 	defer db.Close() // close connection pool on shutdown
 
 	// ── Step 3: Wire up layers bottom → top ──────────────────────────────
