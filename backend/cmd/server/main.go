@@ -57,7 +57,7 @@ func main() {
 
 	// CORS — allow requests from the frontend origin
 	r.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{cfg.Appurl},
+		AllowOrigins:     []string{ "http://localhost:5173","https://vault-link-4.onrender.com",},
 		AllowMethods:     []string{"GET", "POST", "OPTIONS"},
 		AllowHeaders:     []string{"Origin", "Content-Type"},
 		ExposeHeaders:    []string{"Content-Length"},
