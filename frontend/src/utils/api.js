@@ -1,4 +1,4 @@
-const BASE = import.meta.env.VITE_API_URL || ''
+const BASE = "https://vault-link-b.onrender.com"
 
 export class NotFoundError extends Error {
   constructor(msg) {
