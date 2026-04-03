@@ -36,10 +36,10 @@ func mustget(key string) string{
 	return val
 }
 
-func getordefault(key, defaulter string) string{
-	val:=os.Getenv(key)
-	if val==""{
-		return val
+func getordefault(key, defaulter string) string {
+	val := os.Getenv(key)
+	if val == "" {
+		return defaulter   // ✅ correct
 	}
-	return defaulter
+	return val           // ✅ correct
 }
