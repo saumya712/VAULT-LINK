@@ -97,12 +97,18 @@ func main() {
 	// ── Step 10: Start HTTP server ────────────────────────────────────────
 	// We use http.Server directly instead of r.Run()
 	// This gives us control over timeouts and graceful shutdown
+	port := os.Getenv("PORT")
+
+	if port == "" {
+		port = "8080"
+	}
+
 	srv := &http.Server{
-		Addr:         cfg.Portnum,
+		Addr:         ":" + port,
 		Handler:      r,
-		ReadTimeout:  10 * time.Second, // max time to read request body
-		WriteTimeout: 10 * time.Second, // max time to write response
-		IdleTimeout:  60 * time.Second, // max time for keep-alive connections
+		ReadTimeout:  10 * time.Second,
+		WriteTimeout: 10 * time.Second,
+		IdleTimeout:  60 * time.Second,
 	}
 
 	// Start server in a goroutine so it doesn't block
