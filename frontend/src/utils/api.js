@@ -1,4 +1,5 @@
-const BASE = "https://vault-link-b.onrender.com"
+const RAW_BASE = (import.meta.env?.VITE_API_URL || '').trim()
+const BASE = RAW_BASE ? RAW_BASE.replace(/\/+$/, '') : ''
 
 export class NotFoundError extends Error {
   constructor(msg) {

@@ -114,7 +114,7 @@ func main() {
 	// Start server in a goroutine so it doesn't block
 	// main goroutine will wait for shutdown signal below
 	go func() {
-		fmt.Printf("✓ VaultLink running on %s\n", cfg.Portnum)
+		fmt.Printf("✓ VaultLink running on :%s\n", port)
 		fmt.Printf("✓ Frontend origin: %s\n", cfg.Appurl)
 		fmt.Printf("✓ Environment: %s\n", cfg.Env)
 

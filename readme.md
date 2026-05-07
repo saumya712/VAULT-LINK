@@ -244,35 +244,24 @@ npm run dev
 ```bash
 # backend/.env
 DATABASE_URL=postgres://postgres:password@localhost:5432/vaultlink?sslmode=disable
-PORT=:8080
 APP_URL=http://localhost:5173
 ENV=development
 ```
 
 ---
 
-## Docker
+## Deployment (Railway + Vercel)
 
-### Build the backend image:
-```bash
-cd backend
-docker build -t vaultlink-backend:v1 .
-```
+### Backend (Railway)
+- Set Railway Variables:
+  - `DATABASE_URL`
+  - `APP_URL` (your Vercel frontend URL)
+  - `ENV=production`
+- Do **not** set `PORT` manually — Railway injects it automatically.
 
-### Run with Docker Compose:
-```bash
-docker-compose up --build
-```
-
-This starts three containers: PostgreSQL, backend (Go), frontend (React/Nginx).
-
-### Image sizes:
-```
-golang:1.24-alpine (builder)  →  ~300MB (discarded after build)
-alpine:latest (final)         →  ~15MB  (this is what runs)
-```
-
-Multi-stage build keeps the final image lean — no Go compiler, no source code, just the binary.
+### Frontend (Vercel)
+- Set Vercel Environment Variable:
+  - `VITE_API_URL` (your Railway backend URL, e.g. `https://your-service.up.railway.app`)
 
 ---
 

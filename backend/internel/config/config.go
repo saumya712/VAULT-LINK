@@ -9,21 +9,27 @@ import (
 
 type Config struct {
 	Databaseurl string
-	Portnum     string
 	Appurl      string
 	Env         string
 }
 
 func Load() *Config {
-	if err:=godotenv.Load();err!=nil{
-		log.Println("ERROR LOADING THE .ENV ELEMENTS")
+	if err := godotenv.Load(); err != nil {
+		log.Println("WARN: .env file not found; relying on environment variables")
+	}
+
+	env := getordefault("ENV", "development")
+
+	// In production we rely on Railway environment variables; do not default to localhost.
+	appURLDefault := ""
+	if env != "production" {
+		appURLDefault = "http://localhost:5173"
 	}
 
 	cfg:=&Config{
         Databaseurl: mustget("DATABASE_URL"),
-		Portnum: getordefault("PORT",":8080"),
-		Appurl: getordefault("APP_URL","http://localhost:5173"),
-		Env: getordefault("ENV","development"),
+		Appurl: getordefault("APP_URL", appURLDefault),
+		Env: env,
 	}
 	return cfg
 }
